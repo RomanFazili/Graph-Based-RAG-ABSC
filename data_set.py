@@ -25,14 +25,10 @@ class DataSet:
         return self.tree.getroot()
 
     @property
-    def all_sentences(self) -> list[str]:
+    def all_sentences_as_text(self) -> list[str]:
         return [sentence.find('text').text for sentence in self.root.findall('.//sentence')]
 
-    def tokenize(self, input: str) -> list[str]:
-        raise NotImplementedError("Tokenization is not implemented")
-        return input.lower().split(' ')
-
-    def polarity_frequencies(self):
+    def polarity_frequencies(self) -> dict:
 
         polarity_counts: dict[Polarity, int] = {polarity: 0 for polarity in Polarity}
 

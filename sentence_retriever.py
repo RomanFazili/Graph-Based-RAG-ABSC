@@ -1,5 +1,4 @@
-from data_implemenation import DataSet
-
+from data_set import DataSet
 
 
 class SentenceRetriever:
