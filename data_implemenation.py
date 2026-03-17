@@ -7,7 +7,7 @@ class Polarity(StrEnum):
     NEGATIVE = "negative"
     NEUTRAL = "neutral"
 
-class DataImplementation:
+class DataSet:
 
     def __init__(self, file_path: str):
 
@@ -28,19 +28,14 @@ class DataImplementation:
         return [sentence.find('text').text for sentence in self.root.findall('.//sentence')]
 
     def tokenize(self, input: str) -> list[str]:
+        raise NotImplementedError("Tokenization is not implemented")
         return input.lower().split(' ')
 
     def polarity_frequencies(self):
         raise NotImplementedError("Polarity frequencies is not implemented")
 
-    def BM25_demonstration_selection(self, query_sentence: str, top_k: int):
-        raise NotImplementedError("BM25 demonstration selection is not implemented")
-
-    def SimCSE_demonstration_selection(self, query_sentence: str, top_k: int):
-        raise NotImplementedError("SimCSE demonstration selection is not implemented")
 
 if __name__ == "__main__":
     file_path = input("Enter the path to the XML file: ")
-    data_implementation = DataImplementation()
-    print(data_implementation.polarity_frequencies())
-    print(data_implementation.BM25_demonstration_selection("The food was good", 3))
+    data_set = DataSet(file_path)
+    print(data_set.polarity_frequencies())
