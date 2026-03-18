@@ -16,9 +16,12 @@ class DataSetOntology:
 
         self.ontology: Ontology = get_ontology(f"file://{os.path.abspath(self.file_path)}").load()
 
+    def run_sparql_query(self, query: str):
+        return list(self.ontology.world.sparql(query))
+
 
 if __name__ == "__main__":
     load_dotenv()
     file_path = os.getenv("PATH_TO_RESTAURANT_ONTOLOGY")
 
-    data_set = DataSetOntology(file_path)
+    data_set_ontology = DataSetOntology(file_path)
