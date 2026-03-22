@@ -114,10 +114,6 @@ def remove_intersections(training_input_path: str, test_input_path: str, trainin
     def text_from_sentence(sentence: ET.Element) -> str:
         return sentence.find('text').text.strip()
 
-    print(training_input_path)
-    print(test_input_path)
-
-
     test_tree: ET.ElementTree = ET.parse(test_input_path)
     test_root: ET.Element = test_tree.getroot()
     test_sentences: set[str] = {text_from_sentence(sentence) for sentence in test_root.findall('.//sentence')}
@@ -149,7 +145,9 @@ def remove_intersections(training_input_path: str, test_input_path: str, trainin
 # Convert the SemEval14 dataset to the SemEval15/16 format
 semeval14_input_output_paths: list[tuple[str, str]] = [
     (os.getenv("PATH_TO_RAW_SEMEVAL_14_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TRAIN_DATA")),
-    (os.getenv("PATH_TO_RAW_SEMEVAL_14_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TEST_DATA"))
+    (os.getenv("PATH_TO_RAW_SEMEVAL_14_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TEST_DATA")),
+    (os.getenv("PATH_TO_RAW_SEMEVAL_14_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TRAIN_DATA")),
+    (os.getenv("PATH_TO_RAW_SEMEVAL_14_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TEST_DATA")),
 ]
 
 for semeval14_input_path, semeval14_output_path in semeval14_input_output_paths:
@@ -165,7 +163,14 @@ all_input_output_paths: list[tuple[str, str]] = [
     (os.getenv("PATH_TO_RAW_SEMEVAL_15_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_RESTAURANTS_TRAIN_DATA")),
     (os.getenv("PATH_TO_RAW_SEMEVAL_15_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_RESTAURANTS_TEST_DATA")),
     (os.getenv("PATH_TO_RAW_SEMEVAL_16_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TRAIN_DATA")),
-    (os.getenv("PATH_TO_RAW_SEMEVAL_16_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TEST_DATA"))
+    (os.getenv("PATH_TO_RAW_SEMEVAL_16_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TEST_DATA")),
+
+    (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TRAIN_DATA")),
+    (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TEST_DATA")),
+    # (os.getenv("PATH_TO_RAW_SEMEVAL_15_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_LAPTOPS_TRAIN_DATA")),
+    # (os.getenv("PATH_TO_RAW_SEMEVAL_15_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_LAPTOPS_TEST_DATA")),
+    # (os.getenv("PATH_TO_RAW_SEMEVAL_16_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_LAPTOPS_TRAIN_DATA")),
+    # (os.getenv("PATH_TO_RAW_SEMEVAL_16_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_LAPTOPS_TEST_DATA")),
 ]
 
 for input_path, output_path in all_input_output_paths:
@@ -178,7 +183,11 @@ for input_path, output_path in all_input_output_paths:
 all_input_output_paths_train: list[tuple[str, str, str]] = [
     (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_RESTAURANTS_TRAIN_DATA")),
     (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_RESTAURANTS_TRAIN_DATA")),
-    (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TRAIN_DATA"))
+    (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_RESTAURANTS_TRAIN_DATA")),
+
+    (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_14_LAPTOPS_TRAIN_DATA")),
+    # (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_15_LAPTOPS_TRAIN_DATA")),
+    # (os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_LAPTOPS_TRAIN_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_LAPTOPS_TEST_DATA"), os.getenv("PATH_TO_PREPROCESSED_SEMEVAL_16_LAPTOPS_TRAIN_DATA")),
 ]
 
 for training_input_path, test_input_path, training_output_path in all_input_output_paths_train:
